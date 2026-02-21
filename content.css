@@ -1,0 +1,10 @@
+/*
+  Tab Anxiety — Page-level content styles.
+  Overlay styles live inside Shadow DOM (embedded in content.js).
+  This file intentionally minimal.
+*/
+
+/* Prevent scroll jump when overlay opens on pages with no overflow */
+[data-ta-host] {
+  display: contents;
+}

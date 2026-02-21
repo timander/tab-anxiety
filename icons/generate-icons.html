@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+  Tab Anxiety — Icon Generator
+  Open this file in Chrome, then click each button to download the icon PNGs.
+  Place the downloaded files in this /icons/ folder.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Generate Tab Anxiety Icons</title>
+  <style>
+    body { background: #111; color: #ccc; font-family: sans-serif; padding: 32px; }
+    h2 { color: #6366f1; margin-bottom: 20px; }
+    .row { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+    .icon-wrap { text-align: center; }
+    canvas { display: block; border: 1px solid #333; border-radius: 4px; margin-bottom: 8px; }
+    button {
+      background: #6366f1; border: none; border-radius: 5px; color: #fff;
+      padding: 6px 14px; cursor: pointer; font-size: 12px;
+    }
+    button:hover { background: #818cf8; }
+    p { margin-top: 20px; font-size: 12px; color: #555; }
+  </style>
+</head>
+<body>
+  <h2>Tab Anxiety — Icon Generator</h2>
+  <div class="row" id="row"></div>
+  <p>After downloading, place icon16.png, icon48.png, and icon128.png into the /icons/ folder.</p>
+
+  <script>
+    const SIZES = [16, 48, 128];
+
+    function drawIcon(size) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      const r = size * 0.12; // corner radius
+
+      // Background
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, r);
+      ctx.fillStyle = '#141414';
+      ctx.fill();
+
+      // Accent bar (top)
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size * 0.12, [r, r, 0, 0]);
+      ctx.fillStyle = '#6366f1';
+      ctx.fill();
+
+      // Tab shapes — three overlapping rounded rects
+      const tabW = size * 0.48;
+      const tabH = size * 0.22;
+      const tabY = size * 0.28;
+      const gap  = size * 0.06;
+
+      const tabs = [
+        { x: size * 0.08, color: '#2a2a3a' },
+        { x: size * 0.08 + gap * 1.5, color: '#1e1e2e', yOff: size * 0.18 },
+        { x: size * 0.08 + gap * 3,   color: '#16162a', yOff: size * 0.36 }
+      ];
+
+      tabs.forEach(({ x, color, yOff = 0 }) => {
+        ctx.beginPath();
+        ctx.roundRect(x, tabY + yOff, tabW, tabH, size * 0.06);
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        if (size >= 48) {
+          // Small line detail
+          ctx.beginPath();
+          ctx.roundRect(x + size * 0.06, tabY + yOff + tabH * 0.35, tabW * 0.55, size * 0.04, 2);
+          ctx.fillStyle = '#6366f155';
+          ctx.fill();
+        }
+      });
+
+      return canvas;
+    }
+
+    SIZES.forEach(size => {
+      const canvas = drawIcon(size);
+      const wrap = document.createElement('div');
+      wrap.className = 'icon-wrap';
+
+      const label = document.createElement('div');
+      label.textContent = `${size}×${size}`;
+      label.style.cssText = 'font-size:11px;color:#555;margin-bottom:6px;';
+
+      const btn = document.createElement('button');
+      btn.textContent = `↓ icon${size}.png`;
+      btn.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = `icon${size}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+
+      wrap.appendChild(label);
+      wrap.appendChild(canvas);
+      wrap.appendChild(btn);
+      document.getElementById('row').appendChild(wrap);
+    });
+  </script>
+</body>
+</html>

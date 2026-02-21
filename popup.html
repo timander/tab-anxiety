@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tab Anxiety</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Tab Anxiety</div>
+    <button class="export-btn" id="export-btn" title="Export to Markdown">↓ Export</button>
+  </header>
+
+  <div class="search-row">
+    <input type="search" id="search" placeholder="Search captures by keyword…" autocomplete="off" />
+  </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="uncategorized">
+      Inbox <span class="badge" id="badge-uncategorized"></span>
+    </button>
+    <button class="tab-btn" data-tab="next">
+      Next <span class="badge" id="badge-next"></span>
+    </button>
+    <button class="tab-btn" data-tab="someday">
+      Someday <span class="badge" id="badge-someday"></span>
+    </button>
+    <button class="tab-btn" data-tab="reference">
+      Reference <span class="badge" id="badge-reference"></span>
+    </button>
+    <button class="tab-btn" data-tab="scratchpad">
+      Ideas <span class="badge" id="badge-scratchpad"></span>
+    </button>
+  </nav>
+
+  <main id="main">
+    <!-- Populated by popup.js -->
+  </main>
+
+  <footer>
+    <span id="footer-hint">⌥W triage · ⌥G group · ⌥Q idea</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
