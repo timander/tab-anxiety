@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab Anxiety</title>
+  <link rel="stylesheet" href="newtab.css" />
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">Tab Anxiety</div>
+      <div class="header-meta" id="tab-count"></div>
+    </header>
+
+    <div class="search-wrap">
+      <input type="search" id="search" placeholder="Search your captures, frequent sites, or the web…" autofocus autocomplete="off" />
+      <div class="search-results" id="search-results" hidden></div>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- Sections rendered by newtab.js -->
+    </div>
+  </div>
+  <script src="newtab.js"></script>
+</body>
+</html>

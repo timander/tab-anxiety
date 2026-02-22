@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Tab Anxiety",
-  "version": "1.0",
+  "version": "2.0",
   "description": "Triage your tabs before they triage you.",
   "permissions": [
     "tabs",
@@ -9,7 +9,8 @@
     "storage",
     "tabGroups",
     "downloads",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "background": {
     "service_worker": "background.js"
@@ -31,27 +32,28 @@
     },
     "default_title": "Tab Anxiety"
   },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "omnibox": {
+    "keyword": "ta"
+  },
   "commands": {
     "triage-tab": {
-      "suggested_key": {
-        "default": "Alt+W",
-        "mac": "Alt+W"
-      },
+      "suggested_key": { "default": "Alt+W", "mac": "Alt+W" },
       "description": "Triage current tab (save + close)"
     },
     "assign-group": {
-      "suggested_key": {
-        "default": "Alt+G",
-        "mac": "Alt+G"
-      },
+      "suggested_key": { "default": "Alt+G", "mac": "Alt+G" },
       "description": "Assign current tab to a group"
     },
     "scratchpad": {
-      "suggested_key": {
-        "default": "Alt+Q",
-        "mac": "Alt+Q"
-      },
-      "description": "Open scratchpad (capture idea without opening a tab)"
+      "suggested_key": { "default": "Alt+Q", "mac": "Alt+Q" },
+      "description": "Capture idea without opening a tab"
+    },
+    "annotate-tab": {
+      "suggested_key": { "default": "Alt+A", "mac": "Alt+A" },
+      "description": "Annotate current tab with note/keywords (no close)"
     }
   },
   "icons": {
